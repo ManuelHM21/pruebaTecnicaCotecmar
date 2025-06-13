@@ -55,7 +55,7 @@ class FormularioController extends Controller
             'registrado_por' => auth()->user()->name,
         ]);
 
-        return redirect()->back()->with('success', 'Registro guardado correctamente');
+        return redirect()->route('peso-real')->with('success', 'Peso real registrado exitosamente.');
     }
 
     public function reportePendientes()

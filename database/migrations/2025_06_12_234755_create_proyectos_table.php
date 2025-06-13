@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateProyectosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('proyectos', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
+            $table->string('nombre');
             $table->timestamps();
         });
     }

@@ -3,6 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\FormularioController;
+use App\Models\Proyecto;
+use App\Models\Bloque;  
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +19,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('login');
 });
 
 Route::middleware([
@@ -30,6 +28,31 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return redirect()->route('peso-real');
     })->name('dashboard');
 });
+
+Route::get('/peso-real', [FormularioController::class, 'create'])->name('peso-real');
+Route::post('/peso-real', [FormularioController::class, 'store']);
+Route::get('/bloques/{proyecto_id}', [FormularioController::class, 'getBloques']);
+Route::get('/piezas/{bloque_id}', [FormularioController::class, 'getPiezas']);
+Route::get('/peso-teorico/{pieza_id}', [FormularioController::class, 'getPesoTeorico']);
+Route::get('/reporte/pendientes', [FormularioController::class, 'reportePendientes'])->name('reporte.pendientes');
+Route::get('/reporte/grafico', [FormularioController::class, 'reporteGrafico'])->name('reporte.grafico');
+
+Route::get('/crear-proyecto', fn() => Inertia::render('CrearProyecto'))->name('crear-proyecto');
+Route::post('/proyectos', [FormularioController::class, 'storeProyecto']);
+
+Route::get('/crear-bloque', function () {
+    return Inertia::render('CrearBloque', [
+        'proyectos' => Proyecto::all()
+    ]);
+})->name('crear-bloque');
+Route::post('/bloques', [FormularioController::class, 'storeBloque']);
+
+Route::get('/crear-pieza', function () {
+    return Inertia::render('CrearPieza', [
+        'bloques' => Bloque::all()
+    ]);
+})->name('crear-pieza');
+Route::post('/piezas', [FormularioController::class, 'storePieza']);
