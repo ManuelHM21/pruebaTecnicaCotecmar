@@ -121,32 +121,9 @@ pruebaTecnica/
 └── public/               # Archivos públicos
 ```
 
-## 🔧 Comandos Útiles
-
-```bash
-# Limpiar caché
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-
-# Crear nuevos componentes
-php artisan make:model NombreModelo -mcr
-php artisan make:controller NombreController
-php artisan make:migration create_nombre_table
-
-# Optimizar para producción
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-composer install --optimize-autoloader --no-dev
-```
-
 ## 🎨 Tecnologías Utilizadas
 
 - **Backend**: Laravel 10
 - **Frontend**: Vue.js 3 + Inertia.js
 - **CSS**: Tailwind CSS
 - **Base de Datos**: MySQL/PostgreSQL
-- **Autenticación**: Laravel Sanctum
-- **Bundler**: Vite
