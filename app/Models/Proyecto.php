@@ -9,12 +9,17 @@ class Proyecto extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
-    protected $keyType = 'string';
     protected $fillable = ['id', 'nombre'];
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public function bloques()
     {
-        return $this->hasMany(Bloque::class, 'proyecto_id');
+        return $this->hasMany(Bloque::class);
+    }
+
+    public function piezas()
+    {
+        return $this->hasManyThrough(Pieza::class, Bloque::class);
     }
 }

@@ -10,12 +10,6 @@ defineProps({
 
 const isRegisterMode = ref(false);
 
-// Computed property para las imágenes dinámicas
-const currentImage = computed(() => {
-    return isRegisterMode.value
-        ? "/img/login/register-bg.jpg" // Imagen para registro
-        : "/img/login/login-bg.jpg"; // Imagen para login
-});
 
 const loginForm = useForm({
     email: "",
@@ -102,13 +96,12 @@ const toggleMode = () => {
                                                 class="flex flex-col items-start text-center"
                                             >
                                                 <h1 class="text-2xl font-bold">
-                                                    Welcome
+                                                    Bienvenido
                                                 </h1>
                                                 <p
                                                     class="text-balance text-muted-foreground"
                                                 >
-                                                    Login to your COTECMAR
-                                                    account
+                                                    Inicie sesión con su cuenta de COTECMAR
                                                 </p>
                                             </div>
                                         </div>
@@ -125,7 +118,7 @@ const toggleMode = () => {
                                                 for="login-email"
                                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                             >
-                                                Email
+                                                correo
                                             </label>
                                             
                                             <Textinput
@@ -151,7 +144,7 @@ const toggleMode = () => {
                                                     for="login-password"
                                                     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                 >
-                                                    Password
+                                                    Contraseña
                                                 </label>
                                                 <Link
                                                     v-if="canResetPassword"
@@ -162,7 +155,7 @@ const toggleMode = () => {
                                                     "
                                                     class="ml-auto text-sm underline-offset-2 hover:underline"
                                                 >
-                                                    Forgot your password?
+                                                    ¿Olvidaste tu contraseña?
                                                 </Link>
                                             </div>
                                             <Textinput
@@ -190,7 +183,7 @@ const toggleMode = () => {
                                                 />
                                                 <span
                                                     class="ms-2 text-sm text-gray-600"
-                                                    >Remember me</span
+                                                    >Recuerdame</span
                                                 >
                                             </label>
                                         </div>
@@ -204,17 +197,17 @@ const toggleMode = () => {
                                             }"
                                             :disabled="loginForm.processing"
                                         >
-                                            Log in
+                                            Ingresar
                                         </button>
 
                                         <div class="text-start text-sm">
-                                            Don't have an account?
+                                            ¿No tienes una cuenta?
                                             <button
                                                 type="button"
                                                 @click="toggleMode"
                                                 class="underline underline-offset-4 hover:text-[#003882] transition-colors"
                                             >
-                                                Sign up
+                                                Inscribirse 
                                             </button>
                                         </div>
                                     </div>
@@ -247,12 +240,12 @@ const toggleMode = () => {
                                                 class="flex flex-col items-start text-start w-full"
                                             >
                                                 <h1 class="text-2xl font-bold">
-                                                    Create your account
+                                                    Crear cuenta
                                                 </h1>
                                                 <p
                                                     class="w-full"
                                                 >
-                                                    Register to access COTECMAR platform
+                                                    Regístrate para acceder a la plataforma COTECMAR
                                                 </p>
                                             </div>
                                         </div>
@@ -262,7 +255,7 @@ const toggleMode = () => {
                                                 for="register-name"
                                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                             >
-                                                Name
+                                                Nombre
                                             </label>
                                             <Textinput
                                                 id="register-name"
@@ -285,7 +278,7 @@ const toggleMode = () => {
                                                 for="register-email"
                                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                             >
-                                                Email
+                                                Correo
                                             </label>
                                             <Textinput
                                                 id="register-email"
@@ -308,7 +301,7 @@ const toggleMode = () => {
                                                 for="register-password"
                                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                             >
-                                                Password
+                                                Contraseña
                                             </label>
                                             <Textinput
                                                 id="register-password"
@@ -334,7 +327,7 @@ const toggleMode = () => {
                                                 for="register-password-confirmation"
                                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                             >
-                                                Confirm Password
+                                                Confirmar contraseña
                                             </label>
                                             <Textinput
                                                 id="register-password-confirmation"
@@ -378,7 +371,7 @@ const toggleMode = () => {
                                                 <span
                                                     class="ms-2 text-sm text-gray-600"
                                                 >
-                                                    I agree to the
+                                                    
                                                     <a
                                                         target="_blank"
                                                         :href="
@@ -415,17 +408,17 @@ const toggleMode = () => {
                                             }"
                                             :disabled="registerForm.processing"
                                         >
-                                            Register
+                                            Registrarme
                                         </button>
 
                                         <div class="text-center text-sm">
-                                            Already have an account?
+                                            ¿Ya tienes una cuenta?
                                             <button
                                                 type="button"
                                                 @click="toggleMode"
                                                 class="underline underline-offset-4 hover:text-[#003882] transition-colors"
                                             >
-                                                Sign in
+                                                Iniciar sesión
                                             </button>
                                         </div>
                                     </div>
@@ -459,11 +452,10 @@ const toggleMode = () => {
                                 >
                                     <div class="text-white">
                                         <h2 class="text-2xl font-bold mb-2">
-                                            Welcome to COTECMAR
+                                            Bienvenido a COTECMAR
                                         </h2>
                                         <p class="text-gray-200">
-                                            Access your account and continue
-                                            your naval projects.
+                                            Accede a la cuenta y continúa con tus proyectos navales.
                                         </p>
                                     </div>
                                 </div>
@@ -488,11 +480,10 @@ const toggleMode = () => {
                                 >
                                     <div class="text-white">
                                         <h2 class="text-2xl font-bold mb-2">
-                                            Join COTECMAR
+                                            Unete a COTECMAR
                                         </h2>
                                         <p class="text-gray-200">
-                                            Create your account and be part of
-                                            our naval innovation community.
+                                            Crea tu cuenta y forma parte de nuestra comunidad naval.
                                         </p>
                                     </div>
                                 </div>

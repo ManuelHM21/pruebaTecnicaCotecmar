@@ -1,7 +1,7 @@
 <template>
   <AppLayout title="Registrar Peso Real">
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h2 class="font-semibold text-md text-gray-800 leading-tight">
         Registrar Peso Real de Piezas
       </h2>
     </template>
@@ -13,7 +13,7 @@
           <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
               <div class="text-center">
-                <div class="text-3xl font-bold text-blue-600">{{ piezasPendientes.length }}</div>
+                <div class="text-3xl font-bold text-[#003882]">{{ piezasPendientes.length }}</div>
                 <div class="text-sm text-gray-600">Total Piezas</div>
               </div>
               <div class="text-center">
@@ -37,18 +37,18 @@
                   v-model="filtroNombre" 
                   type="text" 
                   placeholder="Buscar por nombre de pieza..."
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#003882] focus:border-transparent"
                 />
               </div>
               <div>
-                <select v-model="filtroEstado" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <select v-model="filtroEstado" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#003882] focus:border-transparent">
                   <option value="">Todos los estados</option>
                   <option value="Pendiente">Pendientes</option>
                   <option value="Fabricado">Fabricadas</option>
                 </select>
               </div>
               <div>
-                <select v-model="filtroProyecto" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <select v-model="filtroProyecto" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#003882] focus:border-transparent">
                   <option value="">Todos los proyectos</option>
                   <option v-for="proyecto in proyectosUnicos" :key="proyecto.id" :value="proyecto.id">
                     {{ proyecto.nombre }}
@@ -174,7 +174,7 @@
                 type="number" 
                 step="0.01" 
                 min="0" 
-                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#003882] focus:border-transparent"
                 placeholder="Ingrese el peso real..."
                 required
                 autofocus
@@ -241,7 +241,7 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 // Props y datos reactivos
 const piezasPendientes = ref(usePage().props.piezas || [])
 const filtroNombre = ref('')
-const filtroEstado = ref('')
+const filtroEstado = ref('Pendiente')
 const filtroProyecto = ref('')
 const modalAbierto = ref(false)
 const piezaModal = ref(null)
@@ -329,6 +329,7 @@ const getAlertaClass = () => {
     : 'bg-red-100 text-red-800 border border-red-200'
 }
 
+// Métodos del modal
 const abrirModal = (pieza) => {
   piezaModal.value = pieza
   pesoRealModal.value = ''
@@ -356,6 +357,7 @@ const calcularDiferenciaModal = () => {
   diferenciaModal.value = (teorico - real).toFixed(2)
 }
 
+// Método para mostrar alertas
 const mostrarAlerta = (tipo, mensaje) => {
   alerta.tipo = tipo
   alerta.mensaje = mensaje
@@ -366,6 +368,7 @@ const mostrarAlerta = (tipo, mensaje) => {
   }, 5000)
 }
 
+// Enviar registro
 const enviarRegistro = () => {
   if (!piezaModal.value || !pesoRealModal.value) return
   
@@ -377,6 +380,7 @@ const enviarRegistro = () => {
     peso_real: pesoRealModal.value
   }, {
     onSuccess: (response) => {
+      // Actualizar la pieza en la lista local
       const index = piezasPendientes.value.findIndex(p => p.id === piezaModal.value.id)
       if (index !== -1) {
         piezasPendientes.value[index] = {
@@ -400,8 +404,9 @@ const enviarRegistro = () => {
   })
 }
 
-
+// Inicialización
 onMounted(() => {
+  // Si hay un mensaje de éxito desde el servidor
   if (usePage().props.success) {
     mostrarAlerta('success', usePage().props.success)
   }
@@ -409,7 +414,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
 .fixed.top-4.right-4 {
   animation: slideInRight 0.3s ease-out;
 }

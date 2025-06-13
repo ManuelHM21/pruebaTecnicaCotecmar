@@ -121,7 +121,7 @@ const getVariacionColor = (variacion) => {
 <template>
     <AppLayout title="Reporte Gráfico">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-md text-gray-800 leading-tight">
                 Dashboard de Análisis de Producción
             </h2>
         </template>

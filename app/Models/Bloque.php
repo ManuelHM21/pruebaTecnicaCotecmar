@@ -9,17 +9,17 @@ class Bloque extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
-    protected $keyType = 'string';
     protected $fillable = ['id', 'nombre', 'proyecto_id'];
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public function proyecto()
     {
-        return $this->belongsTo(Proyecto::class, 'proyecto_id');
+        return $this->belongsTo(Proyecto::class);
     }
 
     public function piezas()
     {
-        return $this->hasMany(Pieza::class, 'bloque_id');
+        return $this->hasMany(Pieza::class);
     }
 }

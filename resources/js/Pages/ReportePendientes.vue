@@ -24,7 +24,7 @@ const totalPiezasPendientes = computed(() => {
 <template>
     <AppLayout title="Reporte de Piezas Pendientes">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-md text-gray-800 leading-tight">
                 Reporte de Piezas Pendientes por Proyecto
             </h2>
         </template>

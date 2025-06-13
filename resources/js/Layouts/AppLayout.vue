@@ -38,59 +38,59 @@ const logout = () => {
         <Banner />
 
         <div class="min-h-screen bg-gray-100">
-            <nav class="sticky top-0 bg-white/90 backdrop-blur-lg border-b border-gray-100">
+            <nav class="sticky top-0 bg-white/90 backdrop-blur-lg border-b border-gray-100 z-50">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
+                    <div class="flex justify-between h-16 my-2">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <img src="/img/CotecmarLogo.png" alt="logo" class="h-12"/>
-                            </div>
-
-                            <!-- Navigation Links -->
-                            <div
-                                class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
-                            >
-                                <NavLink
-                                    :href="route('peso-real')"
-                                    :active="route().current('peso-real')"
-                                >
-                                    Registro de Fabricación
-                                </NavLink>
-                                <NavLink
-                                    :href="route('crear-pieza')"
-                                    :active="route().current('crear-pieza')"
-                                >
-                                    Registrar Pieza
-                                </NavLink>
-                                <NavLink
-                                    :href="route('crear-proyecto')"
-                                    :active="route().current('crear-proyecto')"
-                                >
-                                    Crear Proyecto
-                                </NavLink>
-                                <NavLink
-                                    :href="route('crear-bloque')"
-                                    :active="route().current('crear-bloque')"
-                                >
-                                    Crear Bloque
-                                </NavLink>
-                                <NavLink
-                                    :href="route('reporte.pendientes')"
-                                    :active="route().current('reporte.pendientes')"
-                                >
-                                    Reporte Pendientes
-                                </NavLink>
-                                <NavLink
-                                    :href="route('reporte.grafico')"
-                                    :active="route().current('reporte.grafico')"
-                                >
-                                    Reporte Gráfico
-                                </NavLink>
+                                <img src="/img/CotecmarLogo.png" alt="logo" class="h-16"/>
                             </div>
                         </div>
 
+                        <!-- Navigation Links -->
+                        <div
+                            class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                        >
+                            <NavLink
+                                :href="route('peso-real')"
+                                :active="route().current('peso-real')"
+                            >
+                                Registro de Fabricación
+                            </NavLink>
+                            <NavLink
+                                :href="route('crear-pieza')"
+                                :active="route().current('crear-pieza')"
+                            >
+                                Registrar Pieza
+                            </NavLink>
+                            <NavLink
+                                :href="route('crear-proyecto')"
+                                :active="route().current('crear-proyecto')"
+                            >
+                                Crear Proyecto
+                            </NavLink>
+                            <NavLink
+                                :href="route('crear-bloque')"
+                                :active="route().current('crear-bloque')"
+                            >
+                                Crear Bloque
+                            </NavLink>
+                            <NavLink
+                                :href="route('reporte.pendientes')"
+                                :active="route().current('reporte.pendientes')"
+                            >
+                                Reporte Pendientes
+                            </NavLink>
+                            <NavLink
+                                :href="route('reporte.grafico')"
+                                :active="route().current('reporte.grafico')"
+                            >
+                                Reporte Gráfico
+                            </NavLink>
+                        </div>
+                        
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <div class="ms-3 relative">
                                 <!-- Teams Dropdown -->
@@ -287,13 +287,13 @@ const logout = () => {
                                         <div
                                             class="block px-4 py-2 text-xs text-gray-400"
                                         >
-                                            Manage Account
+                                            Administrador de cuenta
                                         </div>
 
                                         <DropdownLink
                                             :href="route('profile.show')"
                                         >
-                                            Profile
+                                            Perfil
                                         </DropdownLink>
 
                                         <DropdownLink
@@ -311,7 +311,7 @@ const logout = () => {
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
                                             <DropdownLink as="button">
-                                                Log Out
+                                                Cerrar sesión
                                             </DropdownLink>
                                         </form>
                                     </template>
@@ -450,7 +450,7 @@ const logout = () => {
                                 :href="route('profile.show')"
                                 :active="route().current('profile.show')"
                             >
-                                Profile
+                                Perfil
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink
@@ -464,7 +464,7 @@ const logout = () => {
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">
                                 <ResponsiveNavLink as="button">
-                                    Log Out
+                                    Cerrar sesion
                                 </ResponsiveNavLink>
                             </form>
 
@@ -560,13 +560,13 @@ const logout = () => {
 
             <!-- Page Heading -->
             <header v-if="$slots.header" class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="animate-fade-up animate-duration-[800ms]">
                 <slot />
             </main>
         </div>

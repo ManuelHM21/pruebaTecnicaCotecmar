@@ -55,7 +55,7 @@ class FormularioController extends Controller
             'registrado_por' => auth()->user()->name,
         ]);
 
-        return redirect()->route('peso-real')->with('success', 'Peso real registrado exitosamente.');
+        return redirect()->back()->with('success', 'Registro guardado correctamente');
     }
 
     public function reportePendientes()
@@ -118,5 +118,80 @@ class FormularioController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Pieza creada correctamente');
+    }
+
+    public function updateProyecto(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+        ]);
+
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->update($request->only('nombre'));
+
+        return redirect()->route('crear-proyecto')->with('success', 'Proyecto actualizado exitosamente.');
+    }
+
+    public function deleteProyecto($id)
+    {
+        $proyecto = Proyecto::findOrFail($id);
+
+        if ($proyecto->bloques()->count() > 0) {
+            return redirect()->route('crear-proyecto')->with('error', 'No se puede eliminar el proyecto porque tiene bloques asociados.');
+        }
+
+        $proyecto->delete();
+        return redirect()->route('crear-proyecto')->with('success', 'Proyecto eliminado exitosamente.');
+    }
+
+    public function updateBloque(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'proyecto_id' => 'required|exists:proyectos,id',
+        ]);
+
+        $bloque = Bloque::findOrFail($id);
+        $bloque->update($request->only('nombre', 'proyecto_id'));
+
+        return redirect()->route('crear-bloque')->with('success', 'Bloque actualizado exitosamente.');
+    }
+
+    public function deleteBloque($id)
+    {
+        $bloque = Bloque::findOrFail($id);
+        
+        if ($bloque->piezas()->count() > 0) {
+            return redirect()->route('crear-bloque')->with('error', 'No se puede eliminar el bloque porque tiene piezas asociadas.');
+        }
+
+        $bloque->delete();
+        return redirect()->route('crear-bloque')->with('success', 'Bloque eliminado exitosamente.');
+    }
+
+    public function updatePieza(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'peso_teorico' => 'required|numeric|min:0',
+            'bloque_id' => 'required|exists:bloques,id',
+        ]);
+
+        $pieza = Pieza::findOrFail($id);
+        $pieza->update($request->only('nombre', 'peso_teorico', 'bloque_id'));
+
+        return redirect()->route('crear-pieza')->with('success', 'Pieza actualizada exitosamente.');
+    }
+
+    public function deletePieza($id)
+    {
+        $pieza = Pieza::findOrFail($id);
+        
+        if ($pieza->estado === 'Fabricado') {
+            return redirect()->route('crear-pieza')->with('error', 'No se puede eliminar una pieza que ya fue fabricada.');
+        }
+
+        $pieza->delete();
+        return redirect()->route('crear-pieza')->with('success', 'Pieza eliminada exitosamente.');
     }
 }
