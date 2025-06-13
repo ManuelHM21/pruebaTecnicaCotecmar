@@ -134,7 +134,7 @@ const getVariacionColor = (variacion) => {
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-900 mb-6">Resumen Ejecutivo</h3>
                         
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
                             <div class="text-center p-4 bg-blue-50 rounded-lg">
                                 <div class="text-3xl font-bold text-blue-600">{{ datosGraficos.length }}</div>
                                 <div class="text-sm text-gray-600">Proyectos Activos</div>
@@ -146,10 +146,6 @@ const getVariacionColor = (variacion) => {
                             <div class="text-center p-4 bg-red-50 rounded-lg">
                                 <div class="text-3xl font-bold text-red-600">{{ totalesGenerales.pendientes }}</div>
                                 <div class="text-sm text-gray-600">Piezas Pendientes</div>
-                            </div>
-                            <div class="text-center p-4 bg-purple-50 rounded-lg">
-                                <div class="text-3xl font-bold text-purple-600">{{ totalesGenerales.eficienciaGeneral.toFixed(1) }}%</div>
-                                <div class="text-sm text-gray-600">Eficiencia Global</div>
                             </div>
                         </div>
                     </div>
